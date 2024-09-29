@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MedicineProject.MainPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#0099ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Start" VerticalOptions="Center">
+                <ContentView Padding="10,10,0,0" VerticalOptions="FillAndExpand" >
+                    <Frame CornerRadius="10" BorderColor="#0099ff" HeightRequest="40" WidthRequest="340" >
+                        <SearchBar x:Name="Search"  Placeholder="Search Medicine" PlaceholderColor="#0099ff"  
+                              FontAttributes="None" Margin="-20" TextChanged="Search_TextChanged" ></SearchBar>
+                    </Frame>
+                </ContentView>
+                <ContentView Padding=" 10,10,0,0">
+                    <Button Text="+ Add" CornerRadius="10" BackgroundColor="Transparent" TextColor="#0099ff" FontSize="20" Margin="-10,0,0,0" Clicked="Button_AddMedicine" ></Button>
+                </ContentView>
+
+            </StackLayout>
+        </StackLayout>
+
+        <!--<RefreshView x:Name="medicineRefreshView" RefreshColor="Blue" Refreshing="medicineRefreshView_Refreshing">-->
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="10,0,10,0" Spacing="10">
+                <Label x:Name="SearchDataStatus" Text="No Record Found..." IsVisible="false"></Label>
+
+                <ListView x:Name="MedicineDetails_ListView" HasUnevenRows="True"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <Frame CornerRadius="10" BorderColor="#0099ff" Padding="10,5,10,5" >
+                                    <StackLayout Orientation="Vertical" Padding="0,0,0,0">
+                                        <StackLayout >
+                                            <Label Text="{Binding MedicineName, StringFormat='Medicine Name:-  {0,F0}'}" TextColor="Red" FontSize="Medium" />
+
+                                            <StackLayout Orientation="Horizontal" >
+
+                                                <StackLayout Orientation="Vertical">
+
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Symptoms :" TextColor="#0099ff" FontSize="Small" WidthRequest="120"></Label>
+                                                        <Label Text="{Binding MedicineUsedFor, StringFormat='Medicine Used for:-  {0,F0}'}" TextColor="Black" FontSize="Small"  ></Label>
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Quantity :" TextColor="#0099ff" FontSize="Small" WidthRequest="120"></Label>
+                                                        <Button Text="   -    " TextColor="blue" BackgroundColor="Transparent" Margin="0,-12,0,0" Command="{Binding ID, StringFormat='ID:-  {0,F0}'}" CommandParameter="{Binding .}" Clicked="Button_DecreaseQuantity"></Button>
+                                                        <Label x:Name="lbl_Quantity" Text="{Binding Quantity, StringFormat='Quantity:-  {0,F0}'}" TextColor="Black" FontSize="Small" Margin="0,0,0,0" ></Label>
+                                                        <Button Text="+" TextColor="blue" BackgroundColor="Transparent" Margin="0,-12,0,0" Command="{Binding ID, StringFormat='ID:-  {0,F0}'}" CommandParameter="{Binding .}" Clicked="Button_IncreaseQuantity" ></Button>
+
+                                                    </StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Exipred on :" TextColor="#0099ff" FontSize="Small" WidthRequest="120"></Label>
+                                                        <Label Text="{Binding ExpiryDate, StringFormat='Expiry Date:-  {0,F0}'}" TextColor="Black" FontSize="Small"  ></Label>
+
+                                                    </StackLayout>
+                                                </StackLayout>
+
+
+                                                <StackLayout Orientation="Vertical" HorizontalOptions="EndAndExpand">
+                                                    <Image BackgroundColor="Brown" HeightRequest="60" ></Image>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Button Text="Update" Command="{Binding Id, StringFormat='ID:-  {0,F0}'}" CommandParameter="{Binding .}" Clicked="Button_Update" TextColor="blue" BackgroundColor="Transparent" Margin="-10"></Button>
+                                                        <Button Text="Delete" Command="{Binding Id, StringFormat='ID:-  {0,F0}'}" CommandParameter="{Binding .}" Clicked="Button_Delete" TextColor="blue" BackgroundColor="Transparent" Margin="-10"></Button>
+
+                                                    </StackLayout>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal" >
+
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+
+            </StackLayout>
+        </ScrollView>
+        <!--</RefreshView>-->
+    </Grid>
+
+
+</ContentPage>

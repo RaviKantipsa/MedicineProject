@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+             x:Class="MedicineProject.AddMedicinePage"
+             CanBeDismissedByTappingOutsideOfPopup="False">
+    <AbsoluteLayout HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#5F5A59" >
+        <Frame BackgroundColor="White" CornerRadius="20" BorderColor="Blue" Padding="10" WidthRequest="250">
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand">
+                    <Entry x:Name="MedicineName" Placeholder="Enter Medicine Name" PlaceholderColor="#0099ff" TextChanged="TextChanged_MedicineName"  ></Entry>
+                    <Entry x:Name="MedicineUsedFor" Placeholder="Enter Symptom Name" PlaceholderColor="#0099ff" ></Entry>
+                    <Entry x:Name="Quantity" Keyboard="Numeric" Placeholder="Enter Quantity" PlaceholderColor="#0099ff" ></Entry>
+                    <DatePicker x:Name="ExpiryDate" TextColor="#0099ff" Format="dd-MM-yyyy" >
+                        <!--<DatePicker.Style>
+                            <Style TargetType="">
+                                <Setter Property="BackgroundColor" Value="Green"></Setter>
+                                <Setter Property="TextColor" Value="Blue"></Setter>
+                            </Style>
+                        </DatePicker.Style>-->
+                    </DatePicker>
+                    <Button x:Name="ImageButton" Text="Take Picture" Clicked="Button_TakePicture" TextColor="#0099ff" CornerRadius="10" BackgroundColor="Transparent" BorderColor="Blue"></Button>
+                    <Image x:Name="MedicineImage" WidthRequest="50" HeightRequest="50"></Image>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button x:Name="ButtonSave" Text="Save" Clicked="ButtonSave_Clicked"  IsEnabled="false" CornerRadius="10" WidthRequest="70" BackgroundColor="#0099ff" Opacity=".6" Margin="0,0,20,0"></Button>
+                    <Button Text="Cancel" Clicked="ButtonCancel_Clicked" CornerRadius="10" WidthRequest="70" BackgroundColor="#0099ff"></Button>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </AbsoluteLayout>
+</mct:Popup>
